@@ -1,20 +1,22 @@
 <?php
+namespace Database;
 require_once 'config.php';
 
-
-class Database {
+class Database  {
 // database confige to connection 
-protected $user_name = USER_NAME;
-protected $server_name =SERVER;
-protected $password = PASSWORD;
-protected $db_name = DBNAME;
+
+public $conn , $user_name, $server_name, $password, $db_name;
  public function __construct() {
+    $this->$user_name = USER_NAME;
+    $this->$server_name = SERVER;
+    $this->$password = PASSWORD;
+    $this->$db_name = DBNAME;
+    
     try{
 
-        $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      
-        
+        $this->conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
     }
     catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
