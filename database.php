@@ -2,21 +2,6 @@
 require_once 'config.php';
 
 
-try{
-
-    $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare('SELECT * FROM users');
-    $stmt->execute();
-     $stmt->setFetchMode(PDO::FETCH_ASSOC);
-     $users = $stmt->fetchAll();
-    
-}
-catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-
-}
-
 class Database {
 // database confige to connection 
 protected $user_name = USER_NAME;
@@ -28,10 +13,7 @@ protected $db_name = DBNAME;
 
         $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare('SELECT * FROM users');
-        $stmt->execute();
-         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-         $users = $stmt->fetchAll();
+      
         
     }
     catch (PDOException $e) {
@@ -39,6 +21,16 @@ protected $db_name = DBNAME;
     
     }
     
+}
+public function read ()
+{
+    $query = "SELECT * FROM users";
+      $stmt = $conn->prepare($query);
+        $stmt->execute();
+         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+         $users = $stmt->fetchAll();
+
+         return $users;
 }
 
 }
