@@ -1,13 +1,11 @@
 <?php
 
-require_once 'config.php';
-
 class Database {
 
 public $hostname, $dbname, $username, $password, $conn;
 
 function __construct() {
-    $this->host_name = SERVER;
+    $this->host_name = HOST_NAME;
     $this->dbname = DBNAME;
     $this->username = USERNAME;
     $this->password = PASSWORD;
@@ -15,7 +13,6 @@ function __construct() {
 
         $this->conn = new PDO("mysql:host=$this->host_name;dbname=$this->dbname", $this->username, $this->password);
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo 'ok';
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }
