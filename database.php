@@ -1,23 +1,7 @@
 <?php
 
-try{
-
-    $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare('SELECT * FROM users');
-    $stmt->execute();
-     $stmt->setFetchMode(PDO::FETCH_ASSOC);
-     $users = $stmt->fetchAll();
-    
-}
-catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-
-}
-
 class Database {
 
-<<<<<<< HEAD
 public $hostname, $dbname, $username, $password, $conn;
 
 function __construct() {
@@ -31,18 +15,8 @@ function __construct() {
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
-=======
-        $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare('SELECT * FROM users');
-        $stmt->execute();
-         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-         $users = $stmt->fetchAll();
-        
->>>>>>> parent of d262313 (Update database.php)
     }
 }
-<<<<<<< HEAD
 
 function customSelect($sql) {
     try {
@@ -89,8 +63,6 @@ function delete($tbl, $cond='') {
         return 'Error: ' . $e->getMessage();
     }
 }
-=======
->>>>>>> parent of d262313 (Update database.php)
 
 function insert($tbl, $arr) {
     $sql = "INSERT INTO $tbl (`";
