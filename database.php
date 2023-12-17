@@ -1,23 +1,7 @@
 <?php
 
-try{
-
-    $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare('SELECT * FROM users');
-    $stmt->execute();
-     $stmt->setFetchMode(PDO::FETCH_ASSOC);
-     $users = $stmt->fetchAll();
-    
-}
-catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-
-}
-
 class Database {
 
-<<<<<<< HEAD
 public $hostname, $dbname, $username, $password, $conn;
 
 function __construct() {
@@ -31,118 +15,17 @@ function __construct() {
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
-=======
-        $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare('SELECT * FROM users');
-        $stmt->execute();
-         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-         $users = $stmt->fetchAll();
-        
->>>>>>> parent of d262313 (Update database.php)
     }
 }
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 // 
-=======
-function customSelect($sql) {
-    try {
-         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute();
-        $rows = $stmt->fetchAll(); // assuming $result == true
-        return $rows;
-    } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-}
-
-function select($tbl, $cond='') {
-    $sql = "SELECT * FROM $tbl";
-    if ($cond!='') {
-        $sql .= " WHERE $cond ";
-    }
-
-    try {
-         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute();
-        $rows = $stmt->fetchAll(); // assuming $result == true
-        return $rows;
-    } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-}
-function num_rows($rows){
-     $n = count($rows);
-     return $n;
-}
-
-function delete($tbl, $cond='') {
-    $sql = "DELETE FROM `$tbl`";
-    if ($cond!='') {
-        $sql .= " WHERE $cond ";
-    }
-
-    try {
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->rowCount(); // 1
-    } catch (PDOException $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-}
-=======
->>>>>>> parent of d262313 (Update database.php)
-
-function insert($tbl, $arr) {
-    $sql = "INSERT INTO $tbl (`";
-    $key = array_keys($arr);
-    $val = array_values($arr);
-    $sql .= implode("`, `", $key);
-    $sql .= "`) VALUES ('";
-    $sql .= implode("', '", $val);
-    $sql .= "')";
-
-    $sql1="SELECT MAX( id ) FROM  `$tbl`";
-    try {
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        $stmt2 = $this->conn->prepare($sql1);
-        $stmt2->execute();
-        $rows = $stmt2->fetchAll(); // assuming $result == true
-        return $rows[0][0];
-    } catch (PDOException $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-}
-
-function update($tbl, $arr, $cond) {
-    $sql = "UPDATE `$tbl` SET ";
-    $fld = array();
-    foreach ($arr as $k => $v) {
-        $fld[] = "`$k` = '$v'";
-    }
-    $sql .= implode(", ", $fld);
-    $sql .= " WHERE " . $cond;
-
-    try {
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->rowCount(); // 1
-    } catch (PDOException $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-}
->>>>>>> parent of 90d0ad1 (Revert "delete protected and set information in constructor")
 }
 
 $conn = new Database();
 
 
 
-function customSelect($sql) {
+// function customSelect($sql) {
     //     try {
     //          $stmt = $this->conn->prepare($sql);
     //         $result = $stmt->execute();
