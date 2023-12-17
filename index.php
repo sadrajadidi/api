@@ -15,4 +15,3 @@ $users = [
 $users = json_encode($users);
 
 echo $users;
-//comment
